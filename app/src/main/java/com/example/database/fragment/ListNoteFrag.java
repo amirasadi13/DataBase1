@@ -1,6 +1,7 @@
 package com.example.database.fragment;
 
 import android.content.Context;
+import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -36,7 +37,8 @@ public class ListNoteFrag extends Fragment {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_list_note, container, false);
 
-
+        NoteDao noteDao =NoteDataBase.getInstance(getContext()).noteDao();
+        notes = (ArrayList<Note>) noteDao.getNoteList();
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
