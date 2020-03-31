@@ -15,25 +15,37 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.database.R;
+import com.example.database.database.Note;
 import com.example.database.database.NoteDao;
-import com.example.database.database.NoteDataBase_Impl;
+import com.example.database.database.NoteDataBase;
 import com.example.database.databinding.FragmentListNoteBinding;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
 
 
 public class ListNoteFrag extends Fragment {
 
     FragmentListNoteBinding binding;
+    ArrayList<Note> notes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
-
-
-
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_list_note, container, false);
+
+
+
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        binding.recyclerView.setLayoutManager(linearLayoutManager);
+        CustomAdapter customAdapter =new CustomAdapter(ListNoteFrag.this,notes);
+        binding.recyclerView.setAdapter(customAdapter);
+
+
+
 
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +53,6 @@ public class ListNoteFrag extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.action_listNoteFrag_to_enterNoteFrag);
             }
         });
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        binding.recyclerView.setLayoutManager(linearLayoutManager);
-
-
-
 
         return binding.getRoot();
     }

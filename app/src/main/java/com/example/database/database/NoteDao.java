@@ -1,8 +1,6 @@
 package com.example.database.database;
 
 
-import android.provider.SyncStateContract;
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -19,7 +17,7 @@ public interface NoteDao {
     List<Note> getNoteList();
 
    @Insert
-    void insertNote(Note note);
+   long insertNote(Note note);
 
    @Update
     void updateNote(Note note);

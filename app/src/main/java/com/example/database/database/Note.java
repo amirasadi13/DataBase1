@@ -8,11 +8,11 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "note")
-class Note {
+public class Note {
 
 
     @PrimaryKey(autoGenerate = true)
-    private int note_id;
+    private int note_id = 0;
 
     @ColumnInfo(name = "noteText")
     private String content;
@@ -44,9 +44,8 @@ class Note {
         this.content = content;
     }
 
-    public Note (int note_id , String content , String title){
+    public Note ( String content , String title){
         this.content = content;
-        this.note_id = note_id;
         this.title = title;
     }
 
