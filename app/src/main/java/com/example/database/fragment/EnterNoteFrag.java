@@ -1,9 +1,10 @@
 package com.example.database.fragment;
 
-import android.content.Context;
-import android.net.Uri;
+
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -19,6 +20,9 @@ import com.example.database.database.NoteDao;
 import com.example.database.database.NoteDataBase;
 import com.example.database.databinding.FragmentEnterNoteBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class EnterNoteFrag extends Fragment {
 
@@ -33,6 +37,7 @@ public class EnterNoteFrag extends Fragment {
 
 
         binding.button.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.action_enterNoteFrag_to_listNoteFrag);
@@ -43,6 +48,7 @@ public class EnterNoteFrag extends Fragment {
         return binding.getRoot();
 
     }
+
     void saveDataToDataBase(){
         Note note = new Note(binding.editText2.getText().toString(),binding.editText.getText().toString());
        NoteDao noteDao = NoteDataBase.getInstance(getContext()).noteDao();

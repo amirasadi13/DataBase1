@@ -8,12 +8,15 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import com.example.database.R;
 import com.example.database.database.Note;
@@ -30,6 +33,8 @@ public class ListNoteFrag extends Fragment {
     FragmentListNoteBinding binding;
     ArrayList<Note> notes;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,9 +46,11 @@ public class ListNoteFrag extends Fragment {
         notes = (ArrayList<Note>) noteDao.getNoteList();
 
 
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         binding.recyclerView.setLayoutManager(linearLayoutManager);
         CustomAdapter customAdapter =new CustomAdapter(ListNoteFrag.this,notes);
+        binding.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),1));
         binding.recyclerView.setAdapter(customAdapter);
 
 

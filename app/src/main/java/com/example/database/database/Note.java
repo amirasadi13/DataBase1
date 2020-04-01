@@ -6,6 +6,11 @@ import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity(tableName = "note")
 public class Note {
@@ -19,6 +24,7 @@ public class Note {
 
     @ColumnInfo(name = "title")
     private String title;
+
 
     public String getTitle() {
         return title;

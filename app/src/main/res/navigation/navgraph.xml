@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_listNoteFrag_to_enterNoteFrag"
             app:destination="@id/enterNoteFrag" />
+        <action
+            android:id="@+id/action_listNoteFrag_to_openItemsFrag"
+            app:destination="@id/openItemsFrag" />
+        <action
+            android:id="@+id/action_listNoteFrag_to_editItemsFrag"
+            app:destination="@id/editItemsFrag" />
     </fragment>
     <fragment
         android:id="@+id/enterNoteFrag"
@@ -21,6 +27,27 @@
         tools:layout="@layout/fragment_enter_note" >
         <action
             android:id="@+id/action_enterNoteFrag_to_listNoteFrag"
+            app:destination="@id/listNoteFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/openItemsFrag"
+        android:name="com.example.database.fragment.OpenItemsFrag"
+        android:label="fragment_open_items"
+        tools:layout="@layout/fragment_open_items" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="text"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editItemsFrag"
+        android:name="com.example.database.fragment.EditItemsFrag"
+        android:label="fragment_edit_items"
+        tools:layout="@layout/fragment_edit_items" >
+        <action
+            android:id="@+id/action_editItemsFrag_to_listNoteFrag"
             app:destination="@id/listNoteFrag" />
     </fragment>
 </navigation>
