@@ -39,6 +39,9 @@ public class EditItemsFrag extends Fragment {
                 String newTitle =binding.editText3.getText().toString();
                 String newText =binding.editText4.getText().toString();
                 int id = getArguments().getInt("item_id");
+                NoteDao noteDao =NoteDataBase.getInstance(getContext()).noteDao();
+                Note note = new Note(newTitle,newText);
+                noteDao.updateNote(note);
                 Navigation.findNavController(v).navigate(R.id.action_editItemsFrag_to_listNoteFrag);
             }
         });
