@@ -67,6 +67,10 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
                                     bundle.putString("title",title);
                                     bundle.putString("text",text);
                                     Navigation.findNavController(v).navigate(R.id.action_listNoteFrag_to_openItemsFrag,bundle);
+
+
+
+
                                 }else if(item.getItemId() == R.id.menu_edit_btn){
                                     NoteDao noteDao =NoteDataBase.getInstance(v.getContext()).noteDao();
                                     Note note =notes.get(position);

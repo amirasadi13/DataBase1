@@ -21,6 +21,7 @@ import com.example.database.database.NoteDataBase;
 import com.example.database.databinding.FragmentEnterNoteBinding;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 
 
@@ -49,8 +50,10 @@ public class EnterNoteFrag extends Fragment {
 
     }
 
+
     void saveDataToDataBase(){
-        Note note = new Note(binding.editText2.getText().toString(),binding.editText.getText().toString());
+        Long milis = new Date().getTime();
+        Note note = new Note(binding.editText2.getText().toString(),binding.editText.getText().toString(),milis);
        NoteDao noteDao = NoteDataBase.getInstance(getContext()).noteDao();
        long result = noteDao.insertNote(note);
         Toast.makeText(getContext(), "data saved"+result, Toast.LENGTH_SHORT).show();

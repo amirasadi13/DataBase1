@@ -33,6 +33,8 @@ public class ListNoteFrag extends Fragment {
     FragmentListNoteBinding binding;
     ArrayList<Note> notes;
 
+    NoteDao noteDao;
+    CustomAdapter customAdapter;
 
 
     @Override
@@ -65,6 +67,10 @@ public class ListNoteFrag extends Fragment {
 
         return binding.getRoot();
     }
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+//        notes =(ArrayList<Note>) noteDao.getNoteList();
+//        customAdapter.notifyDataSetChanged();
+    }
 }

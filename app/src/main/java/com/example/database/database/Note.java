@@ -25,6 +25,16 @@ public class Note {
     @ColumnInfo(name = "title")
     private String title;
 
+    @ColumnInfo(name = "time")
+    private Long time;
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
 
     public String getTitle() {
         return title;
@@ -50,8 +60,9 @@ public class Note {
         this.content = content;
     }
 
-    public Note ( String content , String title){
+    public Note ( String content , String title ,Long time){
         this.content = content;
+        this.time =time ;
         this.title = title;
     }
 

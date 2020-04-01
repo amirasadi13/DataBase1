@@ -16,12 +16,17 @@ import com.example.database.database.NoteDao;
 import com.example.database.database.NoteDataBase;
 import com.example.database.databinding.FragmentEditItemsBinding;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 
 public class EditItemsFrag extends Fragment {
 
 
     FragmentEditItemsBinding binding;
-
+    NoteDao noteDao;
+    CustomAdapter customAdapter;
+    ArrayList<Note> notes;
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,7 +45,9 @@ public class EditItemsFrag extends Fragment {
                 String newText =binding.editText4.getText().toString();
                 int id = getArguments().getInt("item_id");
                 NoteDao noteDao =NoteDataBase.getInstance(getContext()).noteDao();
-                Note note = new Note(newTitle,newText);
+                Long milis = new Date().getTime();
+                Note note = new Note(newText,newTitle,milis);
+                note.setNote_id(id);
                 noteDao.updateNote(note);
                 Navigation.findNavController(v).navigate(R.id.action_editItemsFrag_to_listNoteFrag);
             }
@@ -50,5 +57,6 @@ public class EditItemsFrag extends Fragment {
 
         return binding.getRoot();
     }
+
 
 }
