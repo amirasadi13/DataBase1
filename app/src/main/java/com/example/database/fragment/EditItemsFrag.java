@@ -16,6 +16,7 @@ import com.example.database.database.NoteDao;
 import com.example.database.database.NoteDataBase;
 import com.example.database.databinding.FragmentEditItemsBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 

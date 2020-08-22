@@ -21,7 +21,9 @@ import com.example.database.database.Note;
 import com.example.database.database.NoteDao;
 import com.example.database.database.NoteDataBase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
@@ -45,6 +47,12 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.title.setText(notes.get(position).getTitle());
         holder.text.setText(notes.get(position).getContent());
+
+        Long milis = notes.get(position).getTime();
+        Date date =new Date(milis);
+        SimpleDateFormat simpleDateFormat =new SimpleDateFormat("hh:mm");
+        String timeFormat =simpleDateFormat.format(date);
+        holder.time.setText(timeFormat);
         holder.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -55,14 +63,14 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
                             public boolean onMenuItemClick(MenuItem item) {
                                 if (item.getItemId() == R.id.menu_delete_btn){
                                     NoteDao noteDao = NoteDataBase.getInstance(v.getContext()).noteDao();
-                                    Note note =notes.get(position);
+                                    Note note = notes.get(position);
                                     noteDao.deleteNote(note);
                                     notes.remove(position);
                                     notifyDataSetChanged();
                                 }else if (item.getItemId() == R.id.menu_open_btn){
-                                    Note note =notes.get(position);
-                                    String title =note.getTitle();
-                                    String text =note.getContent();
+                                    Note note = notes.get(position);
+                                    String title = note.getTitle();
+                                    String text = note.getContent();
                                     Bundle bundle = new Bundle();
                                     bundle.putString("title",title);
                                     bundle.putString("text",text);
@@ -101,6 +109,7 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         TextView text;
+        TextView time;
         ImageView menu;
 
         public MyViewHolder (View itemView){
@@ -108,6 +117,7 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
             title = (TextView) itemView.findViewById(R.id.tv_title);
             text = (TextView) itemView.findViewById(R.id.tv_note);
             menu = (ImageView) itemView.findViewById(R.id.menu_btn);
+            time = (TextView) itemView.findViewById(R.id.tv_time);
         }
     }
 }

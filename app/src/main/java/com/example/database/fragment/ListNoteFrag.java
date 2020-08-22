@@ -44,7 +44,7 @@ public class ListNoteFrag extends Fragment {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_list_note, container, false);
 
-        NoteDao noteDao =NoteDataBase.getInstance(getContext()).noteDao();
+        NoteDao noteDao = NoteDataBase.getInstance(getContext()).noteDao();
         notes = (ArrayList<Note>) noteDao.getNoteList();
 
 

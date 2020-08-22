@@ -35,7 +35,10 @@ public class EnterNoteFrag extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_enter_note, container, false);
 
-
+        SimpleDateFormat simpleDateFormat =new SimpleDateFormat("dd/mm/yyyy hh:mm");
+        Date date = new Date();
+        String liveTime = simpleDateFormat.format(date);
+        binding.tvLiveTime.setText(liveTime);
 
         binding.button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
